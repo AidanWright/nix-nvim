@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
   callback = function()
     vim.defer_fn(function()
-      require("emojify").enable()
+      require("emojify").enable_emojify()
     end, 500)
   end,
 })
