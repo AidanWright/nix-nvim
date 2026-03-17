@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "emojify-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1717348135,
+        "narHash": "sha256-U9pd0K9NhAMX3J/F6xudI1wand7sOrVNrqCmSOkps+Y=",
+        "owner": "ronisbr",
+        "repo": "emojify.nvim",
+        "rev": "6bf0f3f33443833fc8f3fb56a87cbcac7ef970e0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ronisbr",
+        "repo": "emojify.nvim",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -197,6 +213,7 @@
     },
     "root": {
       "inputs": {
+        "emojify-nvim": "emojify-nvim",
         "flake-utils": "flake-utils",
         "gen-luarc": "gen-luarc",
         "nixpkgs": "nixpkgs_2"
