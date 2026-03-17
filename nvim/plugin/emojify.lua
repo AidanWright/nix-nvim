@@ -1,4 +1,6 @@
-require("emojify").setup({
-  inlay = false,
-})
-vim.opt.conceallevel = 1
+vim.defer_fn(function()
+  require("emojify").setup({
+    inlay = false,
+  })
+end, 100)
+vim.opt.conceallevel = 2
