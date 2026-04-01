@@ -100,6 +100,13 @@ cmp.setup {
     ['<C-y>'] = cmp.mapping.confirm {
       select = true,
     },
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.confirm { select = true }
+      else
+        fallback()
+      end
+    end, { 'i', 'c', 's' }),
   },
   sources = cmp.config.sources {
     -- The insertion order influences the priority of the sources
