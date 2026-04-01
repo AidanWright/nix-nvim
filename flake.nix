@@ -31,17 +31,14 @@
     neovim-overlay = import ./nix/neovim-overlay.nix {inherit inputs;};
   in
     flake-utils.lib.eachSystem systems (system: let
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [
-          # Import the overlay, so that the final Neovim derivation(s) can be accessed via pkgs.<nvim-pkg>
-          neovim-overlay
-          # This adds a function can be used to generate a .luarc.json
-          # containing the Neovim API all plugins in the workspace directory.
-          # The generated file can be symlinked in the devShell's shellHook.
-          inputs.gen-luarc.overlays.default
-        ];
-      };
+      pkgs = nixpkgs.legacyPackages.${system}.appendOverlays [
+        # Import the overlay, so that the final Neovim derivation(s) can be accessed via pkgs.<nvim-pkg>
+        neovim-overlay
+        # This adds a function can be used to generate a .luarc.json
+        # containing the Neovim API all plugins in the workspace directory.
+        # The generated file can be symlinked in the devShell's shellHook.
+        inputs.gen-luarc.overlays.default
+      ];
       shell = pkgs.mkShell {
         name = "nvim-devShell";
         buildInputs = with pkgs; [
